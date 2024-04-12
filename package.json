@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/app.ts"
+    "dev": "nodemon ./src/app.ts",
+    "tsc": "tsc",
+    "build": "npm install; tsc",
+    "start": "node build/app.js"
   },
   "keywords": [],
   "author": "",
