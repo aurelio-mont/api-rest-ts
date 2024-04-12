@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 
-import { deleteItem, getItem, getItems, postItem, updateItem } from "../controllers/blog.controler ";
+import { deleteItem, getItem, getItems, postItem, updateItem } from "../controllers/blog.controller ";
 
 const router = Router();
 
