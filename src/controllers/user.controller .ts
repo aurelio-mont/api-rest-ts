@@ -1,6 +1,16 @@
 import { Request, Response } from "express"
 import { handleHttp } from "../utils/error.handle"
-import { addUserService } from "../services/user.service"
+import { addUserService, getUsersService } from "../services/user.service"
+
+
+const getUsersController = async ({ body }: Request, res: Response) => {
+    try {
+        const allUers = await getUsersService()
+        res.send(allUers)
+    } catch (e) {
+        handleHttp(res, 'ERROR_GET_USERS', e)
+    }
+}
 
 const addUserController = async ({ body }: Request, res: Response) => {
     try {
@@ -11,4 +21,4 @@ const addUserController = async ({ body }: Request, res: Response) => {
     }
 }
 
-export { addUserController }
+export { addUserController, getUsersController }

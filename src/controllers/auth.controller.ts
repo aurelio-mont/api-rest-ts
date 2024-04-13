@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { handleHttp } from "../utils/error.handle"
 import { loginAuthService } from "../services/auth.service"
 import { getUserService } from "../services/user.service"
+import { handleSignToken } from "../utils/jwt.handle"
 
 const loginAuthController = async ({ body }: Request, res: Response) => {
     try {
@@ -17,12 +18,13 @@ const loginAuthController = async ({ body }: Request, res: Response) => {
                 res.status(403)
                 res.send({ data: "INVALID CREDENIALS" })
             } else {
-                res.send({
-                    data: {
-                        user
-                    },
-                    token: "validate"
-                })
+                const token = handleSignToken(user)
+                if (!token) {
+                    res.status(403)
+                    res.send({ data: "INVALID JWT" })
+                } else {
+                    res.send({ user, token })
+                }
             }
         }
     } catch (e) {
