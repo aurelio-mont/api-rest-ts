@@ -7,7 +7,7 @@
     "dev": "nodemon ./src/app.ts",
     "tsc": "tsc",
     "build": "npm install; tsc",
-    "start": "node build/app.js"
+    "start": "node ./dist/app.js"
   },
   "keywords": [],
   "author": "",
